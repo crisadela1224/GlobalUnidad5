@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+	<h1>Camp General</h1>
+	<h:form id="frmCampGeneral">
+	Name:<h:inputText value="#{campGeneralController.campGeneral.name}"/>
+	Location Id: <h:inputText value="#{campGeneralController.campGeneral.locationId}" />
+	Opt Camp Type: <h:inputText value="#{campGeneralController.campGeneral.optCampType}" />
+	address: <h:inputText value="#{campGeneralController.campGeneral.address}" />
+	capacity: <h:inputText value="#{campGeneralController.campGeneral.capacity}" />
+	shelters: <h:inputText value="#{campGeneralController.campGeneral.shelters}" />
+	area: <h:inputText value="#{campGeneralController.campGeneral.area}" />
+	Persons Per Shelter: <h:inputText value="#{campGeneralController.campGeneral.personsPerShelter}" />
+	<h:commandButton action="#{campGeneralController.save}" value="Save"> 		
+ 		<f:ajax execute="frmCampGeneral" render="frmCampGeneral"/>
+ 		</h:commandButton>
+	<h:dataTable value="#{campGeneralController.campGenerals}" var="c" id="dtCampGeneral">
+ 			<h:column>
+ 				<f:facet name="header">ID</f:facet>
+ 				#{c.id}
+ 			</h:column>
+ 			<h:column>
+ 				<f:facet name="header">Name</f:facet>
+ 				#{c.name}
+ 			</h:column>
+ 			<h:column>
+ 				<f:facet name="header">Location Id</f:facet>
+ 				#{c.locationId}
+ 			</h:column>
+ 			<h:column>
+ 				<f:facet name="header">Opt  Camp Type</f:facet>
+ 				#{c.optCampType}
+ 			</h:column>
+ 				<h:column>
+ 				<f:facet name="header">Address</f:facet>
+ 				#{c.address}
+ 			</h:column>
+ 				<h:column>
+ 				<f:facet name="header">Capacity</f:facet>
+ 				#{c.capacity}
+ 			</h:column>
+ 				<h:column>
+ 				<f:facet name="header">Shelters</f:facet>
+ 				#{c.shelters}
+ 			</h:column>
+ 				<h:column>
+ 				<f:facet name="header">Area</f:facet>
+ 				#{c.area}
+ 			</h:column>
+ 				<h:column>
+ 				<f:facet name="header">Persons  Per Shelter</f:facet>
+ 				#{c.personsPerShelter}
+ 			</h:column>
+ 			
+ 		<h:column>
+ 			<f:facet name="header">Actions</f:facet>
+ 			<h:commandButton action="#{campGeneralController.delete(c)}" 
+ 			value="Delete" onClick="return window.confirm('Are you sure?')">
+ 			<f:ajax render="frmCampGeneral:dtCampGeneral"/>
+ 			</h:commandButton>
+ 			<h:commandButton action="#{campGeneralController.update(c)}"
+ 			 value="Update">
+ 			<f:ajax render="frmCampGeneral"/>
+ 			</h:commandButton>
+ 		</h:column>
+ 		
+ 		</h:dataTable>
+ 		</h:form>
+</body> 
+</html>
